@@ -26,8 +26,7 @@ public class EntryService {
         entryRepository.deleteById(id);
     }
 
-    public Entry updateEntry(Entry entry,Long id){
-        entryRepository.findById(id);
-        return entry;
+    public Entry updateEntry(Entry entry){
+        return entryRepository.save(entry);
     }
 }

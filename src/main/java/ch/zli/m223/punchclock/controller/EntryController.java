@@ -38,6 +38,6 @@ public class EntryController {
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public Entry updateEntry(@Valid @RequestBody Entry entry, @PathVariable Long id){
-        return entryService.updateEntry(entry, id);
+        return entryService.updateEntry(entry);
     }
 }
