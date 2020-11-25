@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface ApplicationUserRepository extends JpaRepository<ApplicationUser, Long> {
     ApplicationUser findByUsername(String username);
-    @Query(value = "SELECT username FROM User")
+    @Query(value = "SELECT username FROM ApplicationUser")
     List<ApplicationUser> findAllUsers(Sort sort);
 }
