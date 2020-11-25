@@ -1,8 +1,7 @@
 package ch.zli.m223.punchclock.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 public class Company {
     @Id
@@ -10,6 +9,13 @@ public class Company {
     private Long id;
     private String name;
     private String headquarter;
+
+    @ManyToMany
+    @JoinTable(
+        name = "user_company",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "company_id"))
+    Set<ApplicationUser> employees;
 
     public Long getId() {
         return id;
