@@ -48,6 +48,18 @@ public class ApplicationUser {
         this.password = password;
     }
 
+    public List<Entry> getEntries() {
+        return entries;
+    }
+
+    public Set<Company> getCompaniesWorkingIn() {
+        return companiesWorkingIn;
+    }
+
+    public void setCompaniesWorkingIn(Set<Company> companiesWorkingIn) {
+        this.companiesWorkingIn = companiesWorkingIn;
+    }
+
     public static ApplicationUser parseToken(String token) {
         DecodedJWT claim = JWT.decode(token.replace("Bearer", ""));
         ApplicationUser user = new ApplicationUser();

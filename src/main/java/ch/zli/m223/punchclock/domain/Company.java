@@ -41,4 +41,12 @@ public class Company {
     public void setHeadquarter(String headquarter) {
         this.headquarter = headquarter;
     }
+
+    public Set<ApplicationUser> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<ApplicationUser> employees) {
+        this.employees = employees;
+    }
 }
