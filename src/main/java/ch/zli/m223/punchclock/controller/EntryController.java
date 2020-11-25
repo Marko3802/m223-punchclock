@@ -1,5 +1,6 @@
 package ch.zli.m223.punchclock.controller;
 
+import ch.zli.m223.punchclock.domain.ApplicationUser;
 import ch.zli.m223.punchclock.domain.Entry;
 import ch.zli.m223.punchclock.service.EntryService;
 import org.springframework.http.HttpStatus;
@@ -19,13 +20,17 @@ public class EntryController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Entry> getAllEntries() {
-        return entryService.findAll();
+    public List<Entry> getAllEntries(@RequestHeader(name = "Authorization") String token) {
+        ApplicationUser user = ApplicationUser.parseToken(token);
+        return entryService.findAllByApplicationUserId(user.getId());
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Entry createEntry(@Valid @RequestBody Entry entry) {
+    public Entry createEntry(@Valid @RequestBody Entry entry,
+                             @RequestHeader(name = "Authorization") String token) {
+        ApplicationUser user = ApplicationUser.parseToken(token);
+        entry.setApplicationUser(user);
         return entryService.createEntry(entry);
     }
 

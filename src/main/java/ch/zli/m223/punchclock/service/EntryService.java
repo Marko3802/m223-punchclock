@@ -18,8 +18,8 @@ public class EntryService {
         return entryRepository.saveAndFlush(entry);
     }
 
-    public List<Entry> findAll() {
-        return entryRepository.findAll();
+    public List<Entry> findAllByApplicationUserId(long id) {
+        return entryRepository.getEntriesByApplicationUserId(id);
     }
 
     public void deleteEntry(Long id){

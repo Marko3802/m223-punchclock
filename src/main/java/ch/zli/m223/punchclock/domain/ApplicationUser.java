@@ -1,6 +1,11 @@
 package ch.zli.m223.punchclock.domain;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -11,6 +16,10 @@ public class ApplicationUser {
     private long id;
     private String username;
     private String password;
+
+    @OneToMany(mappedBy = "applicationUser")
+    @JsonIgnoreProperties(value = "applicationUser")
+    private List<Entry> entries;
 
     @ManyToMany(mappedBy = "employees")
     Set<Company> companiesWorkingIn;
@@ -37,5 +46,13 @@ public class ApplicationUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public static ApplicationUser parseToken(String token) {
+        DecodedJWT claim = JWT.decode(token.replace("Bearer", ""));
+        ApplicationUser user = new ApplicationUser();
+        user.setId(claim.getClaim("id").asLong());
+        user.setUsername(claim.getSubject());
+        return user;
     }
 }
