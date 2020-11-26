@@ -19,6 +19,9 @@ const signUp = (e) =>{
         },
         body: JSON.stringify(signUp)
     }).then((result) => {
-        window.location.replace(`${URL}/index.html`);
+            if(result.status === 200){
+                window.location.replace(`${URL}/index.html`);;
+            }
+
     });
 }
