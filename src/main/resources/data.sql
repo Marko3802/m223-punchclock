@@ -5,7 +5,7 @@ INSERT INTO EVENT(name, ort)
 VALUES ('Daily Meeting', 'Sitzungszimmer1'), ('Apero', 'Dachterasse'), ('Test day', 'Sizungszimmer3');
 
 INSERT INTO USER(password, username)
-VALUES ('pS2UNr', 'User1'), ('ZBu33h', 'User2'), ('3SadXc', 'User3');
+VALUES ('$2a$10$ceov5tprx7.UpP7m6XCdneiPjeSYwb7tYuBw/3OdoEpboqUu0LvdC', 'User1'), ('$2a$10$ceov5tprx7.UpP7m6XCdneiPjeSYwb7tYuBw/3OdoEpboqUu0LvdC', 'User2'), ('$2a$10$ceov5tprx7.UpP7m6XCdneiPjeSYwb7tYuBw/3OdoEpboqUu0LvdC', 'User3');
 
 INSERT INTO USER_COMPANY(user_id, company_id)
 VALUES (1, 3), (2, 2), (3, 1);
