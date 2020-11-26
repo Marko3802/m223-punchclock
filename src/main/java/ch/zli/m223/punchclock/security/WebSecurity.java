@@ -38,6 +38,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
             .antMatchers(HttpMethod.GET, SecurityConstants.INDEX).permitAll()
             .antMatchers(HttpMethod.POST, SecurityConstants.COMPANIES_URL).permitAll()
             .antMatchers(HttpMethod.GET, SecurityConstants.COMPANIES_URL).permitAll()
+            .antMatchers(HttpMethod.GET, SecurityConstants.COMPANIES_URL+"/**").permitAll()
             .antMatchers(HttpMethod.DELETE, SecurityConstants.COMPANIES_URL+"/*").permitAll()
             .antMatchers(HttpMethod.PUT, SecurityConstants.COMPANIES_URL).permitAll()
             .antMatchers("/h2-console/**").permitAll()
