@@ -20,14 +20,13 @@ public class CompanyController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Company> getAllCompanies(@RequestHeader(name = "Authorization") String token) {
+    public List<Company> getAllCompanies() {
         return companyService.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Company createCompany(@Valid @RequestBody Company company,
-                             @RequestHeader(name = "Authorization") String token) {
+    public Company createCompany(@Valid @RequestBody Company company) {
         return companyService.createCompany(company);
     }
 

@@ -5,8 +5,8 @@ const createCompany = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const company = {};
-    company['name'] = formData.get('headquarter');
-    company['headquarter'] = formData.get('companyName');
+    company['name'] = formData.get('companyName');
+    company['headquarter'] = formData.get('headquarter');
 
     fetch(`${URL}/companies`, {
         method: 'POST',
@@ -46,8 +46,8 @@ const renderCompanies = () => {
     companies.forEach((company) => {
         const row = document.createElement('tr');
         row.appendChild(createCell(company.id));
-        row.appendChild(createCell(company.headquarter);
-        row.appendChild(createCell(company.name);
+        row.appendChild(createCell(company.headquarter));
+        row.appendChild(createCell(company.name));
         display.appendChild(row);
     });
 };
