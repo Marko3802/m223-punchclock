@@ -11,13 +11,20 @@
 </head>
 <body>
 <h1>User View</h1>
-<form id="createCompanyForm">
+<form id="createUserForm">
     <label for="username">Username</label>
     <input type="text" name="username" id="username" required>
     <label for="password">Password</label>
     <input type="password" name="password" id="password" required>
     <input type="submit" value="Save" />
 </form>
+
+<form id="deleteCompanyForm">
+    <label for="companyId">Id</label>
+    <input type="text" name="companyId" id="companyId" required>
+    <input type="button" value="delete" onclick="deleteCompany(document.getElementById('companyId').value)"/>
+</form>
+
 <table>
     <thead>
     <tr>
