@@ -22,27 +22,6 @@ const createCompany = (e) => {
      });
 };
 
-const updateCompany = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const company = {};
-    company['name'] = formData.get('companyNameU');
-    company['headquarter'] = formData.get('headquarterU');
-
- fetch(`${URL}/companies/` + formData.get('companyIdU'), {
-         method: 'PUT',
-         headers: {
-             'Content-Type': 'application/json'
-         },
-         body: JSON.stringify(company)
-     }).then((result) => {
-         result.json().then((company) => {
-             companies.push(company);
-             renderCompanies();
-         });
-     });
-};
-
 const indexCompanies = () => {
     fetch(`${URL}/companies`, {
         method: 'GET',
