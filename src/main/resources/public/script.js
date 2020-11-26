@@ -28,9 +28,8 @@ const updateCompany = (e) => {
     const company = {};
     company['name'] = formData.get('companyNameU');
     company['headquarter'] = formData.get('headquarterU');
-    company['id'] = formData.get('companyIdU');
 
- fetch(`${URL}/companies`, {
+ fetch(`${URL}/companies/` + formData.get('companyIdU'), {
          method: 'PUT',
          headers: {
              'Content-Type': 'application/json'

@@ -39,6 +39,6 @@ public class CompanyController {
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public Company updateCompany(@Valid @RequestBody Company company, @PathVariable Long id){
-        return companyService.updateCompany(company);
+        return companyService.updateCompany(company, id);
     }
 }

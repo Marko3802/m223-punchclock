@@ -26,8 +26,10 @@ public class CompanyService {
         companyRepository.deleteById(id);
     }
     
-    public void updateCompany(Company company) {
-        companyRepository.updateCompany(company.getHeadquarter(), company.getName());
+    public Company updateCompany(Company company, Long id) {
+        companyRepository.deleteById(id);
+        company.setId(id);
+        return companyRepository.save(company);
     }
 
     public void findById(Long id){
