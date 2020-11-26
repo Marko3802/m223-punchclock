@@ -13,4 +13,5 @@ public class SecurityConstants {
     public static final String ALL_HTML = "/*.html";
     public static final String ALL_JS = "/*.js";
     public static final String COMPANIES_URL = "/companies";
+    public static final String USERS_URL = "/users";
 }
