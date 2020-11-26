@@ -25,6 +25,16 @@
     <input type="button" value="delete" onclick="deleteCompany(document.getElementById('companyId').value)"/>
 </form>
 
+<form id="updateCompanyForm">
+    <label for="headquarterU">Headquarter</label>
+    <input type="text" name="headquarter" id="headquarterU" required>
+    <label for="companyNameU">Name</label>
+    <input type="text" name="companyName" id="companyNameU" required>
+    <label for="companyIdU">Id</label>
+    <input type="text" name="companyIdU" id="companyIdU" required>
+    <input type="submit" value="Save" />
+</form>
+
 <table>
     <thead>
     <tr>
