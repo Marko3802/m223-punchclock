@@ -8,23 +8,26 @@ const createCompany = (e) => {
     company['name'] = formData.get('companyName');
     company['headquarter'] = formData.get('headquarter');
 
-    fetch(`${URL}/companies`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(company)
-    }).then((result) => {
-        result.json().then((company) => {
-            companies.push(company);
-            renderCompanies();
-        });
-    });
+ fetch(`${URL}/companies`, {
+         method: 'POST',
+         headers: {
+             'Content-Type': 'application/json'
+         },
+         body: JSON.stringify(company)
+     }).then((result) => {
+         result.json().then((company) => {
+             companies.push(company);
+             renderCompanies();
+         });
+     });
 };
 
 const indexCompanies = () => {
     fetch(`${URL}/companies`, {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Authorization' : localStorage.getItem("JWT")
+        },
     }).then((result) => {
         result.json().then((result) => {
             companies = result;

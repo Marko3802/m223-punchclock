@@ -4,20 +4,6 @@ function deleteCompany(id){
       method: 'DELETE',
     })
 }
-
-function update(id, data){
-  fetch(`${URL}/companies/' + id, {
-    method: 'PUT',
-    body: JSON.stringify({
-     data
-    })
-  }).then((response) => {
-    response.json().then((response) => {
-      console.log(response);
-    })
-  }).catch(err => {
-    console.error(err)
-  })
 </script>
 <!DOCTYPE html>
 <html lang="en">
