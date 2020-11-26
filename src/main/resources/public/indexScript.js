@@ -1,8 +1,8 @@
-const URL = "http://localhost:8081"
+const URL = 'http://localhost:8081';
 
 document.addEventListener('DOMContentLoaded', function(){
-    const createEntryForm = document.querySelector('#createLoginForm');
-    createEntryForm.addEventListener('submit', (e) => login(e));
+    const createLoginForm = document.querySelector('#loginForm');
+    createLoginForm.addEventListener('submit', (e) => login(e));
 });
 
 const login = (e) =>{
@@ -19,12 +19,10 @@ const login = (e) =>{
         },
         body: JSON.stringify(login)
     }).then((result) => {
-        console.log(result)
-        if (result.status == 200){
-        localStorage.setItem("Token", result.headers.get("Authorization"))
-            window.location.replace(`${URL}/homepage`)
-
-    }
-
+        console.log(result);
+        if(result.status === 200){
+            localStorage.setItem("token", result.headers.get("Authorization"));
+            window.location.replace(`${URL}/homepage.html`);
+        }
     });
-    }
+}
