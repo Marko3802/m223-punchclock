@@ -1,3 +1,10 @@
+<script>
+function deleteCompany(id){
+    fetch(`${URL}/companies/` + id, {
+      method: 'DELETE',
+    })
+}
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +25,12 @@
     <label for="companyName">Name</label>
     <input type="text" name="companyName" id="companyName" required>
     <input type="submit" value="Save" />
+</form>
+
+<form id="deleteCompanyForm">
+    <label for="companyId">Id</label>
+    <input type="text" name="companyId" id="companyId" required>
+    <input type="button" value="delete" onclick="deleteCompany(document.getElementById('companyId').value)"/>
 </form>
 <table>
     <thead>
