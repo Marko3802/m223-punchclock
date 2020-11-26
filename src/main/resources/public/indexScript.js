@@ -22,7 +22,7 @@ const login = (e) =>{
         console.log(result);
         if(result.status === 200){
             localStorage.setItem("token", result.headers.get("Authorization"));
-            window.location.replace(`${URL}/homepage.html`);
+            window.location.replace(`${URL}/companyView.html`);
         }
     });
 }
