@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+//Hier wird die Schnittstelle für die ApplicationUser Entity sichergestellt
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -25,6 +26,7 @@ public class UserController {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
+    //Schnittstelle für das Sign-Up users/sign-up
     @PostMapping("/sign-up")
     public void signUp(@RequestBody ApplicationUser user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -42,13 +44,13 @@ public class UserController {
     public ApplicationUser createUser(@Valid @RequestBody ApplicationUser applicationUser) {
         return applicationUserRepository.save(applicationUser);
     }
-
+    //Schnittstelle für delete users/id
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteUser(@PathVariable Long id){
         applicationUserRepository.deleteById(id);
     }
-
+    //Schnittstelle für put users/id
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public ApplicationUser updateUser(@Valid @RequestBody ApplicationUser applicationUser, @PathVariable Long id){

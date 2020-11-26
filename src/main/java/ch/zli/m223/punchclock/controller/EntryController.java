@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+//Hier wird die Schnittstelle für die Company Entry sichergestellt
 @RestController
 @RequestMapping("/entries")
 public class EntryController {
@@ -34,12 +35,14 @@ public class EntryController {
         return entryService.createEntry(entry);
     }
 
+    //Schnittstelle für delete entries/id
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteEntry(@PathVariable Long id){
         entryService.deleteEntry(id);
     }
 
+    //Schnittstelle für delete entries/id
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public Entry updateEntry(@Valid @RequestBody Entry entry, @PathVariable Long id){

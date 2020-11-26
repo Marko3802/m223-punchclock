@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+//Hier wird die Schnittstelle für die Company Entity sichergestellt
 @RestController
 @RequestMapping("/companies")
 public class CompanyController {
@@ -30,12 +31,14 @@ public class CompanyController {
         return companyService.createCompany(company);
     }
 
+    //Schnittstelle für delete companies/id
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteCompany(@PathVariable Long id){
         companyService.deleteCompany(id);
     }
 
+    //Schnittstelle für put companies/id
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public Company updateCompany(@Valid @RequestBody Company company, @PathVariable Long id){
