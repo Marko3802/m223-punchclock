@@ -1,3 +1,37 @@
+<script>
+function deleteUser(id){
+    fetch(`${URL}/users/` + id, {
+      method: 'DELETE',
+    })
+}
+
+const updateUser = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const user = {};
+    user['username'] = formData.get('usernameU');
+    user['password'] = formData.get('passwordU');
+    let id = formData.get('userIdU');
+ fetch(`${URL}/users/` + id, {
+         method: 'PUT',
+         headers: {
+             'Content-Type': 'application/json'
+         },
+         body: JSON.stringify(user)
+     }).then((result) => {
+         result.json().then((user) => {
+             companies.push(user);
+             renderUsers();
+         });
+     });
+};
+
+document.addEventListener('DOMContentLoaded', function(){
+    const updateUserForm = document.querySelector('#updateUserForm');
+    updateUserForm.addEventListener('submit', updateUser);
+    indexUsers();
+});
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +56,7 @@
 <form id="deleteUserForm">
     <label for="userId">Id</label>
     <input type="text" name="userId" id="userId" required>
-    <input type="button" value="delete" onclick="deleteCompany(document.getElementById('companyId').value)"/>
+    <input type="button" value="delete" onclick="deleteUser(document.getElementById('userId').value)"/>
 </form>
 
 <form id="updateUserForm">
@@ -42,7 +76,7 @@
         <th>Password</th>
     </tr>
     </thead>
-    <tbody id="companyDisplay">
+    <tbody id="userDisplay">
     <tr>
         <td colspan="3">Loading...</td>
     </tr>

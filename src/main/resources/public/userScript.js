@@ -1,61 +1,40 @@
 const URL = 'http://localhost:8081';
-let companies = [];
+let users = [];
 
 const createCompany = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const company = {};
-    company['username'] = formData.get('companyName');
-    company['headquarter'] = formData.get('headquarter');
+    const user = {};
+    user['username'] = formData.get('username');
+    user['password'] = formData.get('password');
 
  fetch(`${URL}/users`, {
          method: 'POST',
          headers: {
              'Content-Type': 'application/json'
          },
-         body: JSON.stringify(company)
+         body: JSON.stringify(user)
      }).then((result) => {
-         result.json().then((company) => {
-             companies.push(company);
-             renderCompanies();
+         result.json().then((user) => {
+             users.push(user);
+             renderUsers();
          });
      });
 };
 
-const updateCompany = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const company = {};
-    company['name'] = formData.get('companyNameU');
-    company['headquarter'] = formData.get('headquarterU');
-
- fetch(`${URL}/companies/` + formData.get('companyIdU'), {
-         method: 'PUT',
-         headers: {
-             'Content-Type': 'application/json'
-         },
-         body: JSON.stringify(company)
-     }).then((result) => {
-         result.json().then((company) => {
-             companies.push(company);
-             renderCompanies();
-         });
-     });
-};
-
-const indexCompanies = () => {
-    fetch(`${URL}/companies`, {
+const indexUsers = () => {
+    fetch(`${URL}/users`, {
         method: 'GET',
         headers: {
             'Authorization' : localStorage.getItem("JWT")
         },
     }).then((result) => {
         result.json().then((result) => {
-            companies = result;
-            renderCompanies();
+            users = result;
+            renderUsers();
         });
     });
-    renderCompanies();
+    renderUsers();
 };
 
 const createCell = (text) => {
@@ -64,14 +43,14 @@ const createCell = (text) => {
     return cell;
 };
 
-const renderCompanies = () => {
-    const display = document.querySelector('#companyDisplay');
+const renderUsers = () => {
+    const display = document.querySelector('#userDisplay');
     display.innerHTML = '';
-    companies.forEach((company) => {
+    companies.forEach((user) => {
         const row = document.createElement('tr');
-        row.appendChild(createCell(company.id));
-        row.appendChild(createCell(company.headquarter));
-        row.appendChild(createCell(company.name));
+        row.appendChild(createCell(user.id));
+        row.appendChild(createCell(user.username));
+        row.appendChild(createCell(user.password));
         display.appendChild(row);
     });
 };
