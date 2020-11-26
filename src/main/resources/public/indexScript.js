@@ -15,7 +15,8 @@ const login = (e) =>{
     fetch(`${URL}/login`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            //'Authorization' : localStorage.getItem("JWT")
         },
         body: JSON.stringify(login)
     }).then((result) => {
