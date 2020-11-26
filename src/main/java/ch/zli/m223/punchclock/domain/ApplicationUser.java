@@ -24,6 +24,14 @@ public class ApplicationUser {
     @ManyToMany(mappedBy = "employees")
     Set<Company> companiesWorkingIn;
 
+    public static ApplicationUser parseToken(String token) {
+        DecodedJWT claim = JWT.decode(token.replace("Bearer", ""));
+        ApplicationUser user = new ApplicationUser();
+        user.setId(claim.getClaim("id").asLong());
+        user.setUsername(claim.getSubject());
+        return user;
+    }
+
     public long getId() {
         return id;
     }
@@ -58,13 +66,5 @@ public class ApplicationUser {
 
     public void setCompaniesWorkingIn(Set<Company> companiesWorkingIn) {
         this.companiesWorkingIn = companiesWorkingIn;
-    }
-
-    public static ApplicationUser parseToken(String token) {
-        DecodedJWT claim = JWT.decode(token.replace("Bearer", ""));
-        ApplicationUser user = new ApplicationUser();
-        user.setId(claim.getClaim("id").asLong());
-        user.setUsername(claim.getSubject());
-        return user;
     }
 }

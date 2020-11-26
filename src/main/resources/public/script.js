@@ -1,42 +1,37 @@
 const URL = 'http://localhost:8081';
-let entries = [];
+let companies = [];
 
-const dateAndTimeToDate = (dateString, timeString) => {
-    return new Date(`${dateString}T${timeString}`).toISOString();
-};
-
-const createEntry = (e) => {
+const createCompany = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const entry = {};
-    entry['checkIn'] = dateAndTimeToDate(formData.get('checkInDate'), formData.get('checkInTime'));
-    entry['checkOut'] = dateAndTimeToDate(formData.get('checkOutDate'), formData.get('checkOutTime'));
-    entry['event'] = formData.get('eventId');
+    const company = {};
+    company['name'] = formData.get('headquarter');
+    company['headquarter'] = formData.get('companyName');
 
-    fetch(`${URL}/entries`, {
+    fetch(`${URL}/companies`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(entry)
+        body: JSON.stringify(company)
     }).then((result) => {
-        result.json().then((entry) => {
-            entries.push(entry);
-            renderEntries();
+        result.json().then((company) => {
+            companies.push(company);
+            renderCompanies();
         });
     });
 };
 
-const indexEntries = () => {
-    fetch(`${URL}/entries`, {
+const indexCompanies = () => {
+    fetch(`${URL}/companies`, {
         method: 'GET'
     }).then((result) => {
         result.json().then((result) => {
-            entries = result;
-            renderEntries();
+            companies = result;
+            renderCompanies();
         });
     });
-    renderEntries();
+    renderCompanies();
 };
 
 const createCell = (text) => {
@@ -45,21 +40,20 @@ const createCell = (text) => {
     return cell;
 };
 
-const renderEntries = () => {
-    const display = document.querySelector('#entryDisplay');
+const renderCompanies = () => {
+    const display = document.querySelector('#companyDisplay');
     display.innerHTML = '';
-    entries.forEach((entry) => {
+    companies.forEach((company) => {
         const row = document.createElement('tr');
-        row.appendChild(createCell(entry.id));
-        row.appendChild(createCell(new Date(entry.checkIn).toLocaleString()));
-        row.appendChild(createCell(new Date(entry.checkOut).toLocaleString()));
-        row.appendChild(createCell(entry.event.id));
+        row.appendChild(createCell(company.id));
+        row.appendChild(createCell(company.headquarter);
+        row.appendChild(createCell(company.name);
         display.appendChild(row);
     });
 };
 
 document.addEventListener('DOMContentLoaded', function(){
-    const createEntryForm = document.querySelector('#createEntryForm');
-    createEntryForm.addEventListener('submit', createEntry);
-    indexEntries();
+    const createCompanyForm = document.querySelector('#createCompanyForm');
+    createCompanyForm.addEventListener('submit', createCompany);
+    indexCompanies();
 });
